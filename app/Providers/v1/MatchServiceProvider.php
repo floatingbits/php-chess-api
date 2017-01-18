@@ -4,6 +4,7 @@ namespace App\Providers\v1;
 use App\Services\v1\MatchService;
 
 use Illuminate\Support\ServiceProvider;
+use Netsensia\Uci\Engine;
 
 class MatchServiceProvider extends ServiceProvider
 {
@@ -25,7 +26,8 @@ class MatchServiceProvider extends ServiceProvider
     public function register()
     {
         $this->app->bind(MatchService::class, function($app) {
-            return new MatchService();
+
+            return new MatchService($this->app->make('Netsensia\Uci\Engine'));
         });
     }
 }

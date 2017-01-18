@@ -18,6 +18,7 @@ Route::get('/user', function (Request $request) {
 })->middleware('auth:api');
 
 //Route::resource('/match');
-Route::resource('/v1/matches', v1\MatchController::class, ['only' => ['index', 'store']]);
+Route::resource('/v1/matches', v1\MatchController::class, ['only' => ['index', 'store', 'destroy']]);
 Route::resource('/v1/matches.move', v1\MatchMoveController::class, ['only' => ['store']]);
+Route::get('/v1/matches/{matchId}/bestmove', 'v1\MatchMoveController@bestMove');
 

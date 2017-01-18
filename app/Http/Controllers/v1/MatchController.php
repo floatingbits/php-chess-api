@@ -6,6 +6,8 @@ use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 
 use App\Services\v1\MatchService;
+use Illuminate\Http\Response;
+
 class MatchController extends Controller
 {
     /**
@@ -37,4 +39,18 @@ class MatchController extends Controller
     {
         return $this->matches->createMatch($request);
     }
+
+    /**
+     * Delete resource from storage.
+     *
+     * @param  int $matchId
+     * @return \Illuminate\Http\Response
+     */
+    public function destroy($matchId)
+    {
+        $this->matches->deleteMatch($matchId);
+        return Response::create();
+    }
+
+
 }

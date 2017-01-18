@@ -10,6 +10,7 @@ namespace App\Http\Controllers\v1;
 
 use App\Services\v1\MatchService;
 use Illuminate\Http\Request;
+use Ryanhs\Chess\Chess;
 
 
 /**
@@ -37,7 +38,11 @@ class MatchMoveController {
     {
         $match = $this->matches->getMatch($matchId);
         $moveString = $request->input('moveString');
-        //@todo validate move string
+
         return $this->matches->makeMove($match, $moveString);
+    }
+
+    public function bestMove($matchId) {
+        return $this->matches->calculateBestMove($matchId);
     }
 } 
